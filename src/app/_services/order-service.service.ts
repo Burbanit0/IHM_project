@@ -3,20 +3,17 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Order } from '../model/order';
 import { Observable } from 'rxjs';
 
-@Injectable()
+@Injectable({
+  providedIn:'root'
+})
+
 export class OrderService {
 
-  private ordersUrl: string ;
+  ordersUrl = "assets/orders.json";
 
-  constructor(private http: HttpClient) {
-    this.ordersUrl = 'http://localhost:8080/orders';
-  }
+  constructor(private http: HttpClient) {}
 
   public findAll(): Observable<Order[]> {
     return this.http.get<Order[]>(this.ordersUrl);
-  }
-
-  public save(order: Order) {
-    return this.http.post<Order>(this.ordersUrl, order);
   }
 }

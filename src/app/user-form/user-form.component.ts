@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../_services/user-service.service';
 import { User } from '../model/user';
@@ -8,7 +8,7 @@ import { User } from '../model/user';
   templateUrl: './user-form.component.html',
   styleUrls: ['./user-form.component.css']
 })
-export class UserFormComponent {
+export class UserFormComponent implements OnInit {
 
   user: User;
 
@@ -19,8 +19,11 @@ export class UserFormComponent {
     this.user = new User('', '', '', '');
   }
 
+  ngOnInit(): void {
+  }
+
   onSubmit() {
-    this.userService.save(this.user).subscribe(result => this.gotoUserList());
+    alert("user add")
   }
 
   gotoUserList() {
