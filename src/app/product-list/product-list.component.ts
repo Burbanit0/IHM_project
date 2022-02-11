@@ -10,6 +10,8 @@ import { ProductService } from '../_services/product-service.service';
 export class ProductListComponent implements OnInit {
 
   products: Product[] | undefined;
+  currentProduct: Product = {};
+  currentIndex = -1;
 
   constructor(private productService: ProductService) {
   }
@@ -18,6 +20,11 @@ export class ProductListComponent implements OnInit {
       this.productService.findAll().subscribe(data => {
           this.products = data;
       });
+  }
+
+  setActiveProduct(product: Product, index:number): void {
+    this.currentProduct = product;
+    this.currentIndex = index;
   }
 
 }

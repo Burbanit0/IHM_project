@@ -1,22 +1,31 @@
 <div class="card my-5">
     <div class="card-body">
-      <table class="table table-bordered table-striped">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Description</th>
-            <th scope="col">Quantity</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let product of products">
-            <td>{{ product.id }}</td>
-            <td>{{ product.name }}</td>
-            <td>{{ product.price }}</td>
-            <td>{{ product.quantity }}</td>
-          </tr>
-        </tbody>
-      </table>
+      <h4>Products List</h4>
+      <ul class="list-group">
+        <li
+          class="list-group-item"
+          *ngFor="let product of products; let i = index"
+          [class.active]="i == currentIndex"
+          (click)="setActiveProduct(product, i)"
+        >
+          {{ product.name }}
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-6">
+      <div *ngIf="currentProduct.id">
+        <h4>Product</h4>
+        <div>
+          <label><strong>Name:</strong></label> 
+          {{ currentProduct.name }}
+        </div>
+        <div>
+          <label><strong>price:</strong></label>
+          {{ currentProduct.price }}
+        </div>
+        <div>
+          <label><strong>Quantity:</strong></label>
+            {{ currentProduct.quantity}}
+        </div>
     </div>
   </div>

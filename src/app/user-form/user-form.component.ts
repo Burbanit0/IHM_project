@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserService } from '../_services/user-service.service';
-import { User } from '../model/user';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Message } from '../model/message';
 
 @Component({
   selector: 'app-user-form',
@@ -10,20 +10,20 @@ import { User } from '../model/user';
 })
 export class UserFormComponent implements OnInit {
 
-  user: User;
+  message: Message = {};
 
   constructor(
     private route: ActivatedRoute, 
-      private router: Router, 
-        private userService: UserService) {
-    this.user = new User('', '', '', '');
+    private router: Router,
+    private modalService: NgbModal) {
   }
 
   ngOnInit(): void {
+    this.message = {name:"", text:""}
   }
 
   onSubmit() {
-    alert("user add")
+    alert(this.message.name + "\n" + this.message.text)
   }
 
   gotoUserList() {

@@ -1,22 +1,35 @@
 <div class="card my-5">
     <div class="card-body">
-      <table class="table table-bordered table-striped">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Title</th>
-            <th scope="col">User</th>
-            <th scope="col">List of products</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let order of orders">
-            <td>{{ order.id }}</td>
-            <td>{{ order.title }}</td>
-            <td>{{ order.user_id }}</td>
-            <td>{{ order.list_products }}</td>
-          </tr>
-        </tbody>
-      </table>
+      <h4>Orders List</h4>
+      <ul class="list-group">
+        <li
+          class="list-group-item"
+          *ngFor="let order of orders; let i = index"
+          [class.active]="i == currentIndex"
+          (click)="setActiveOrder(order, i)"
+        >
+          {{ order.title }}
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-6">
+      <div *ngIf="currentOrder.id">
+        <h4>Order</h4>
+        <div>
+          <label><strong>Title:</strong></label> 
+          {{ currentOrder.title }}
+        </div>
+        <div>
+          <label><strong>User:</strong></label>
+          {{ currentOrder.user_id }}
+        </div>
+        <div>
+          <label><strong>List of products:</strong></label>
+            <ul>
+              <li *ngFor="let product of currentOrder.list_products">
+                {{ product.id }}
+              </li>
+            </ul>
+        </div>
     </div>
   </div>

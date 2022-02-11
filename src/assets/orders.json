@@ -4,8 +4,8 @@
         "title": "shopping list",
         "user_id": 2,
         "list_products":[
-            1,
-            2
+           {"id": 1},
+           {"id": 2}
         ]
     },
     {
@@ -13,8 +13,8 @@
         "title": "shopping list cooking",
         "user_id": 1,
         "list_products":[
-            3,
-            1
+            {"id": 3},
+            {"id": 1}
         ]
     }
 ]

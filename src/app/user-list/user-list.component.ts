@@ -10,15 +10,19 @@ import { UserService } from '../_services/user-service.service';
 export class UserListComponent implements OnInit {
 
   users: User[] | undefined;
-  selectedUser?:User;
+  currentUser:User = {};
+  currentIndex = -1;
 
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-      this.userService.findAll().subscribe(data => {this.users = data})
+      this.userService.findAll().subscribe(data => {
+        this.users = data
+      })
   }
 
-  onSelected(user:User) : void{
-    this.selectedUser = user; 
+  setActiveUser(user: User, index:number): void {
+    this.currentUser = user;
+    this.currentIndex = index;
   }
 }
